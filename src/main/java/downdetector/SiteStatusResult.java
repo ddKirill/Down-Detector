@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public class CheckResult {
+public class SiteStatusResult {
 
     private final String nameUrl;
     private final String status;

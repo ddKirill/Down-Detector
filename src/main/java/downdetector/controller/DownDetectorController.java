@@ -1,6 +1,6 @@
 package downdetector.controller;
 
-import downdetector.CheckResult;
+import downdetector.SiteStatusResult;
 import downdetector.Site;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,10 +19,10 @@ public class DownDetectorController {
         return "hello.html";
     }
 
-    private List<CheckResult> result = new ArrayList();
+    private List<SiteStatusResult> result = new ArrayList();
     {
-        result.add(new CheckResult("yandex", "fail"));
-        result.add(new CheckResult("google", "fail"));
+        result.add(new SiteStatusResult("yandex", "fail"));
+        result.add(new SiteStatusResult("google", "fail"));
     }
 
     @GetMapping("/all")
@@ -39,7 +39,7 @@ public class DownDetectorController {
 
     @PostMapping("/add")
     public String addSite(@ModelAttribute Site site){
-        result.add(new CheckResult(site.getSite(),"Fail"));
+        result.add(new SiteStatusResult(site.getSite(),"Fail"));
         return "redirect:/all";
     }
 
