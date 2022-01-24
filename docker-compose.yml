@@ -3,8 +3,8 @@ services:
   postgres:
     image: postgres:14.1
     environment:
-      POSTGRES_DB: "birthday-bot-db"
+      POSTGRES_DB: "down-detector-db"
       POSTGRES_USER: "postgres"
-      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_PASSWORD: "1234"
     ports:
       - "5432:5432"
