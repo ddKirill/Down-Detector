@@ -1,4 +1,4 @@
-import downdetector.DownDetector;
+/*import downdetector.service.DownDetector;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +10,7 @@ public class DownDetectorTest {
     @Test
     void checkShouldBeTrue() {
         //GIVEN
-        DownDetector downDetector = new DownDetector();
+        DownDetector downDetector = new DownDetector(siteUrlRepository);
         URI uri = URI.create("http://localhost");
         // WHEN
         boolean result = downDetector.checkUrl(uri);
@@ -21,7 +21,7 @@ public class DownDetectorTest {
 
     @Test
     void checkShouldBeFalse() {
-        DownDetector downDetectorFalse = new DownDetector();
+        DownDetector downDetectorFalse = new DownDetector(siteUrlRepository);
         URI uri = URI.create("http://128.0.0.1");
         boolean result = downDetectorFalse.checkUrl(uri);
         Assertions.assertEquals(false, result);
@@ -29,7 +29,7 @@ public class DownDetectorTest {
 
     @Test
     void checkShouldBe() {
-        DownDetector downDetector = new DownDetector();
+        DownDetector downDetector = new DownDetector(siteUrlRepository);
         URI uri = URI.create("http://localloh");
         boolean result = downDetector.checkUrl(uri);
         Assertions.assertEquals(false, result);
@@ -39,3 +39,5 @@ public class DownDetectorTest {
 
 
 }
+
+ */

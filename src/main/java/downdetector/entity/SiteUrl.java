@@ -6,7 +6,6 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
-import java.util.UUID;
 
 @Table("site_url")
 @AllArgsConstructor
@@ -14,7 +13,7 @@ public class SiteUrl {
 
     @Id
     @Getter
-    private final UUID id;
+    private final Integer id;
 
     @Getter
     @Setter

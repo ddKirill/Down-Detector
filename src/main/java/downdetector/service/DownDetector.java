@@ -1,11 +1,23 @@
-package downdetector;
+package downdetector.service;
+
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.URI;
 import java.net.UnknownHostException;
 
-public class DownDetector {
+@Service
+public class DownDetector  {
+
+    private final SiteUrlInterface siteUrlInterface;
+
+    public DownDetector(SiteUrlInterface siteUrlInterface) {
+        this.siteUrlInterface = siteUrlInterface;
+    }
+
+
+
 
     public boolean checkUrl(URI url){
 
@@ -20,4 +32,6 @@ public class DownDetector {
         }
         return false;
     }
+
+
 }
