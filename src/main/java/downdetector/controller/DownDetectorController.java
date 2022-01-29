@@ -1,6 +1,7 @@
 package downdetector.controller;
 
 import downdetector.entity.SiteUrl;
+import downdetector.entity.SiteUrlAdd;
 import downdetector.repository.SiteUrlRepository;
 import downdetector.service.CheckResult;
 import downdetector.service.DownDetector;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -60,14 +62,12 @@ public class DownDetectorController {
         return "add";
     }
 
-//    @PostMapping("/add")
-//    public String addSite(@RequestParam String url, Model model){
-//        SiteUrl siteUrl = new SiteUrl().setUrl(url);
-//        siteUrlRepository.findById();
-//        siteUrlRepository.save();
-//        Iterable<SiteUrl> siteUrls = siteUrlRepository.findAll();
-//        model.put("siteUrls", siteUrls);
-//        return "redirect:/all";
-//    }
+    @PostMapping("/add")
+    public String addSite(@ModelAttribute SiteUrlAdd siteUrlAdd){
+         SiteUrl siteUrl = new SiteUrl(null, siteUrlAdd.getUrl());
+         siteUrlRepository.save(siteUrl);
+
+        return "redirect:/all";
+    }
 
 }
