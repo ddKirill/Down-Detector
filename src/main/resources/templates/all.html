@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>hello</title>
+    <title>All sites</title>
 </head>
 <body>
 <table>
@@ -10,10 +10,9 @@
         <th>URL</th>
         <th>STATUS</th>
     </tr>
-    <th:block th:each="checkResult : ${checkResults}">
+    <th:block th:each="siteUrls : ${siteUrls}">
         <tr>
-            <td th:text="${checkResult.nameUrl}"></td>
-            <td th:text="${checkResult.status}"></td>
+            <td th:text="${siteUrls}"></td>
         </tr>
     </th:block>
 </table>
