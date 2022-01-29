@@ -10,9 +10,11 @@
         <th>URL</th>
         <th>STATUS</th>
     </tr>
-    <th:block th:each="siteUrls : ${siteUrls}">
+    <th:block th:each="checkResult : ${checkResults}">
         <tr>
-            <td th:text="${siteUrls}"></td>
+            <td th:text="${checkResult.url}"></td>
+            <td th:text="${checkResult.status}"></td>
+
         </tr>
     </th:block>
 </table>

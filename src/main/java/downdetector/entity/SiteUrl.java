@@ -5,20 +5,22 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
-import org.springframework.stereotype.Component;
+
+import java.util.UUID;
 
 
-@Component
 @Table("site_url")
 @AllArgsConstructor
 public class SiteUrl {
 
     @Id
-    private final Integer id;
+    @Getter
+    private final UUID id;
 
     @Getter
     @Setter
     private String url;
+
 
 
 }

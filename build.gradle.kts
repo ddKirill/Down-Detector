@@ -32,6 +32,8 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.testcontainers:junit-jupiter")
     testImplementation("org.testcontainers:postgresql")
+    implementation("org.liquibase:liquibase-core:4.7.1")
+
 }
 
 dependencyManagement {

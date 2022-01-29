@@ -2,30 +2,56 @@ package downdetector.controller;
 
 import downdetector.entity.SiteUrl;
 import downdetector.repository.SiteUrlRepository;
+import downdetector.service.CheckResult;
+import downdetector.service.DownDetector;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Map;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
 public class DownDetectorController {
 
     private final SiteUrlRepository siteUrlRepository;
-    private SiteUrl siteUrl;
+    private final DownDetector downDetector;
 
-    public DownDetectorController(SiteUrlRepository siteUrlRepository, SiteUrl siteUrl) {
+    @Autowired
+    public DownDetectorController(SiteUrlRepository siteUrlRepository, DownDetector downDetector) {
         this.siteUrlRepository = siteUrlRepository;
-        this.siteUrl = siteUrl;
+        this.downDetector = downDetector;
     }
 
 
     @GetMapping("/all")
-    public String getUrl(Map<String, Object> model) {
+    public String getUrl(Model model) throws URISyntaxException {
         Iterable<SiteUrl> siteUrls = siteUrlRepository.findAll();
-        model.put("siteUrls", siteUrls);
+
+
+        List<CheckResult> checkResults = new ArrayList<>();
+            for (SiteUrl siteCheckResult : siteUrls  ) {
+                String result = siteCheckResult.getUrl();
+                URI url = new URI(result);
+                boolean resultCheck = downDetector.checkUrl(url);
+                String status;
+                if (resultCheck == true){
+                     status = "OK";
+                } else {
+                     status = "Fail";
+                }
+
+                CheckResult checkResult =new CheckResult(result,status);
+                checkResults.add(checkResult);
+            }
+        model.addAttribute("checkResults", checkResults);
+
         return "all";
     }
 
@@ -34,13 +60,14 @@ public class DownDetectorController {
         return "add";
     }
 
-    @PostMapping("/add")
-    public String addSite(@RequestParam String url, Map<String, Object> model){
-        SiteUrl siteUrl = new SiteUrl(url);
-        siteUrlRepository.save(siteUrl);
-        Iterable<SiteUrl> siteUrls = siteUrlRepository.findAll();
-        model.put("siteUrls", siteUrls);
-        return "redirect:/all";
-    }
+//    @PostMapping("/add")
+//    public String addSite(@RequestParam String url, Model model){
+//        SiteUrl siteUrl = new SiteUrl().setUrl(url);
+//        siteUrlRepository.findById();
+//        siteUrlRepository.save();
+//        Iterable<SiteUrl> siteUrls = siteUrlRepository.findAll();
+//        model.put("siteUrls", siteUrls);
+//        return "redirect:/all";
+//    }
 
 }
