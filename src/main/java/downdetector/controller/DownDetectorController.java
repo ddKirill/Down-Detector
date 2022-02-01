@@ -69,4 +69,11 @@ public class DownDetectorController {
         return "redirect:/all";
     }
 
+    @GetMapping("/delete")
+    public String deleteAllSites(){
+        siteUrlRepository.deleteAll();
+        return "redirect:all";
+    }
+
+
 }
