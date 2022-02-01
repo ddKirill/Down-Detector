@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Add new site</title>
+    <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
+<th><h2>Add new site</h2></th>
 <form action="/add" method="post" th:object="${siteUrlAdd}">
     <input name="url" type="text">
 </form>

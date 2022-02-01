@@ -34,9 +34,8 @@ public class DownDetectorController {
 
     @GetMapping("/all")
     public String getUrl(Model model) throws URISyntaxException {
+
         Iterable<SiteUrl> siteUrls = siteUrlRepository.findAll();
-
-
         List<CheckResult> checkResults = new ArrayList<>();
             for (SiteUrl siteCheckResult : siteUrls  ) {
                 String result = siteCheckResult.getUrl();

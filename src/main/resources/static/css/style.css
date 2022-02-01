@@ -1,0 +1,17 @@
+h1 {
+    color: lime;
+    text-transform: uppercase;
+}
+
+h2 {
+    color: aqua;
+    text-transform: capitalize;
+}
+
+h3 {
+    color: crimson;
+    text-transform: initial;
+}
+
+
+

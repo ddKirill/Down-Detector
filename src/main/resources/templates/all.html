@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>All sites</title>
+    <link href="css/style_for_all.css" rel="stylesheet">
 </head>
 <body>
 <table>
     <tr>
-        <th>URL</th>
-        <th>STATUS</th>
+        <th><h1>Sites URL</h1></th>
+        <th><h1>STATUS</h1></th>
     </tr>
     <th:block th:each="checkResult : ${checkResults}">
         <tr>
             <td th:text="${checkResult.url}"></td>
             <td th:text="${checkResult.status}"></td>
-
         </tr>
     </th:block>
 </table>
