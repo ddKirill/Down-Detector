@@ -3,3 +3,5 @@ databaseChangeLog:
       file: db/changelog/db_schema.sql
   - include:
       file: db/changelog/add_sites.sql
+  - include:
+      file: db/changelog/storage_sites.sql
