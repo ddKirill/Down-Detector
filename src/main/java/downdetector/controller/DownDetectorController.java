@@ -32,8 +32,8 @@ public class DownDetectorController {
 
     @GetMapping("/all")
     public String getUrl(Model model) throws URISyntaxException {
-        List<CheckResult> checkResult = getSitesUrl.getUrlAndStatus();
-        model.addAttribute("CheckResult", checkResult);
+        List<CheckResult> checkResults = getSitesUrl.getUrlAndStatus();
+        model.addAttribute("checkResult", checkResults);
         return "all";
     }
 
