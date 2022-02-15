@@ -1,14 +1,11 @@
 package downdetector.service;
 
-import downdetector.entity.SiteUrl;
-import downdetector.repository.SiteUrlRepository;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.URI;
 import java.net.UnknownHostException;
-import java.util.List;
 
 @Service
 public class DownDetector  {
