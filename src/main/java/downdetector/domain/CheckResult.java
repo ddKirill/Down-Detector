@@ -1,4 +1,4 @@
-package downdetector.service;
+package downdetector.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,6 +9,6 @@ import lombok.Getter;
 public class CheckResult {
 
     private final String url;
-    private final String status;
+    private final Boolean status;
 
 }

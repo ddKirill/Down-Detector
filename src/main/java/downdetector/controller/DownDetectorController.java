@@ -3,7 +3,7 @@ package downdetector.controller;
 import downdetector.entity.SiteUrl;
 import downdetector.entity.SiteUrlAdd;
 import downdetector.repository.SiteUrlRepository;
-import downdetector.service.CheckResult;
+import downdetector.domain.CheckResult;
 import downdetector.service.GetSitesUrl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.net.URISyntaxException;
+
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -31,9 +32,23 @@ public class DownDetectorController {
 
 
     @GetMapping("/all")
-    public String getUrl(Model model) throws URISyntaxException {
+    public String getUrl(Model model)  {
         List<CheckResult> checkResults = getSitesUrl.getUrlAndStatus();
-        model.addAttribute("checkResult", checkResults);
+        List<CheckResultDTO> checkResultDTOS = new ArrayList<>();
+
+        for (CheckResult checkResult : checkResults) {
+            String status;
+            if ( checkResult.getStatus()){
+                status = "OK";
+            } else {
+                status = "Fail";
+            }
+
+            CheckResultDTO checkResultDTO = new CheckResultDTO(checkResult.getUrl(), status);
+            checkResultDTOS.add(checkResultDTO);
+        }
+
+        model.addAttribute("checkResult", checkResultDTOS);
         return "all";
     }
 

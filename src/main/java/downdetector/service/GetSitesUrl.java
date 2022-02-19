@@ -1,12 +1,16 @@
 package downdetector.service;
 
+import downdetector.controller.CheckResultDTO;
+import downdetector.domain.CheckResult;
 import downdetector.entity.SiteUrl;
+import downdetector.entity.HistorySites;
 import downdetector.repository.SiteUrlRepository;
+import downdetector.repository.StorageSitesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.net.URI;
-import java.net.URISyntaxException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,32 +19,37 @@ public class GetSitesUrl {
 
     private DownDetector downDetector;
     private SiteUrlRepository siteUrlRepository;
+    private StorageSitesRepository storageSitesRepository;
 
     @Autowired
-    public GetSitesUrl(DownDetector downDetector, SiteUrlRepository siteUrlRepository) {
+    public GetSitesUrl(DownDetector downDetector, SiteUrlRepository siteUrlRepository,
+                       StorageSitesRepository storageSitesRepository) {
         this.downDetector = downDetector;
         this.siteUrlRepository = siteUrlRepository;
+        this.storageSitesRepository = storageSitesRepository;
     }
 
-    public List<CheckResult> getUrlAndStatus() throws URISyntaxException {
+    public List<CheckResult> getUrlAndStatus() {
 
         Iterable<SiteUrl> siteUrls = siteUrlRepository.findAll();
         List<CheckResult> checkResults = new ArrayList<>();
+        List<HistorySites> historySitesList = new ArrayList<>();
 
         for (SiteUrl siteCheckResult : siteUrls  ) {
-            String result = siteCheckResult.getUrl();
-            URI url = new URI(result);
-            boolean resultCheck = downDetector.checkUrl(url);
-            String status;
-            if (resultCheck == true){
-                status = "OK";
-            } else {
-                status = "Fail";
-            }
+            URI url = URI.create(siteCheckResult.getUrl());
 
-            CheckResult checkResult = new CheckResult(result,status);
+
+            boolean result = downDetector.checkUrl(url);
+
+            CheckResult checkResult = new CheckResult(siteCheckResult.getUrl(),result);
+            HistorySites historySites = new HistorySites(null, url.toString(), result, LocalDateTime.now());
+
             checkResults.add(checkResult);
+            historySitesList.add(historySites);
+
+
         }
+        storageSitesRepository.saveAll(historySitesList);
 
         return checkResults;
     }

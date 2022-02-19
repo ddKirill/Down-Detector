@@ -1,7 +1,7 @@
 databaseChangeLog:
   - include:
-      file: db/changelog/db_schema.sql
+      file: db/changelog/1_db_schema.sql
   - include:
       file: db/changelog/add_sites.sql
   - include:
-      file: db/changelog/storage_sites.sql
+      file: db/changelog/2_history_sites.sql

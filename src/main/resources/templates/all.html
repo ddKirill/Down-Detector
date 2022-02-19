@@ -19,5 +19,14 @@
     </th:block>
     <a href="/add"><h2>Add site</h2></a>
 </table>
+
+<form action="/delete" method="get" onsubmit="return deleteAll()">
+    <input type="submit" value="Delete all" >
+</form>
+<script>
+    function deleteAll() {
+        return window.confirm('Delete all sites');
+    }
+</script>
 </body>
 </html>
