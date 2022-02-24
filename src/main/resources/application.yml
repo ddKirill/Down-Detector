@@ -6,3 +6,6 @@ spring:
     password: "1234"
   liquibase:
     change-log: db/changelog/db.changelog-master.yml
+
+url-check:
+  timeout-millis: 1000

@@ -1,17 +1,18 @@
 package downdetector.service;
 
-import downdetector.entity.SiteUrl;
-import downdetector.repository.SiteUrlRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.URI;
 import java.net.UnknownHostException;
-import java.util.List;
 
 @Service
 public class DownDetector  {
+
+    @Value("${url-check.timeout-millis:1000}")
+    private int timeOut;
 
 
 
@@ -19,10 +20,10 @@ public class DownDetector  {
 
         try {
             InetAddress address = InetAddress.getByName(url.getHost());
-            return address.isReachable(1000);
+            return address.isReachable(timeOut);
 
         } catch (UnknownHostException e) {
-            e.printStackTrace();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
