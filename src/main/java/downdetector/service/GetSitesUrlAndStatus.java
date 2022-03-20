@@ -1,6 +1,5 @@
 package downdetector.service;
 
-import downdetector.controller.CheckResultDTO;
 import downdetector.domain.CheckResult;
 import downdetector.entity.SiteUrl;
 import downdetector.entity.HistorySites;
@@ -15,15 +14,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class GetSitesUrl {
+public class GetSitesUrlAndStatus {
 
     private DownDetector downDetector;
     private SiteUrlRepository siteUrlRepository;
     private StorageSitesRepository storageSitesRepository;
 
     @Autowired
-    public GetSitesUrl(DownDetector downDetector, SiteUrlRepository siteUrlRepository,
-                       StorageSitesRepository storageSitesRepository) {
+    public GetSitesUrlAndStatus(DownDetector downDetector, SiteUrlRepository siteUrlRepository,
+                                StorageSitesRepository storageSitesRepository) {
         this.downDetector = downDetector;
         this.siteUrlRepository = siteUrlRepository;
         this.storageSitesRepository = storageSitesRepository;

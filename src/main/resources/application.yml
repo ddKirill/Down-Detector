@@ -9,3 +9,9 @@ spring:
 
 url-check:
   timeout-millis: 1000
+
+telegram:
+  enable: ${TELEGRAM_ENABLED:true}
+  bot:
+    username: ${BOT_USERNAME}
+    token: ${BOT_TOKEN}
