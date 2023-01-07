@@ -33,6 +33,9 @@ dependencies {
     testImplementation("org.testcontainers:junit-jupiter")
     testImplementation("org.testcontainers:postgresql")
     implementation("org.liquibase:liquibase-core:4.7.1")
+    implementation ("org.telegram:telegrambots:5.7.1")
+
+
 
 }
 

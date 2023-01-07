@@ -4,7 +4,7 @@ import downdetector.entity.SiteUrl;
 import downdetector.entity.SiteUrlAdd;
 import downdetector.repository.SiteUrlRepository;
 import downdetector.domain.CheckResult;
-import downdetector.service.GetSitesUrl;
+import downdetector.service.GetSitesUrlAndStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,19 +21,19 @@ import java.util.List;
 public class DownDetectorController {
 
     private final SiteUrlRepository siteUrlRepository;
-    private final GetSitesUrl getSitesUrl;
+    private final GetSitesUrlAndStatus getSitesUrlAndStatus;
 
 
     @Autowired
-    public DownDetectorController(SiteUrlRepository siteUrlRepository, GetSitesUrl getSitesUrl) {
+    public DownDetectorController(SiteUrlRepository siteUrlRepository, GetSitesUrlAndStatus getSitesUrlAndStatus) {
         this.siteUrlRepository = siteUrlRepository;
-        this.getSitesUrl = getSitesUrl;
+        this.getSitesUrlAndStatus = getSitesUrlAndStatus;
     }
 
 
     @GetMapping("/all")
     public String getUrl(Model model)  {
-        List<CheckResult> checkResults = getSitesUrl.getUrlAndStatus();
+        List<CheckResult> checkResults = getSitesUrlAndStatus.getUrlAndStatus();
         List<CheckResultDTO> checkResultDTOS = new ArrayList<>();
 
         for (CheckResult checkResult : checkResults) {
